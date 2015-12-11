@@ -20,5 +20,10 @@
 package hu.fnf.devel.wishbox.model;
 
 public class Enums {
-    public enum Priority {INFO, WARNING, DANGER, NONE}
+    public enum Priority {
+        INFO,
+        WARNING,
+        DANGER,
+        NONE
+    }
 }

@@ -16,6 +16,7 @@ public class EventTest {
     public void setUp() throws Exception {
         testEvent = new Event();
         testString = "cica";
+        Enums enums = new Enums(); // Test for empty constructor
     }
     @Test
     public void testGetTime() throws Exception {
