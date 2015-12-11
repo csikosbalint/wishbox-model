@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class UserTest {
+    public static final String NOTTHESAME = "notthesame";
     private User testUser;
     private String testString;
 
@@ -121,5 +122,41 @@ public class UserTest {
         testUser.removeNotification(testNotification);
 
         assertEquals(0, testUser.getNotifications().size());
+    }
+
+    @Test
+    public void testRemoveNonExistingWish() throws Exception {
+        List<Wish> testWishList = new ArrayList<>();
+        Wish testWish = new Wish();
+        testWish.setId(testString);
+        testWishList.add(testWish);
+        Field field = testUser.getClass().getDeclaredField("wishes");
+        field.setAccessible(true);
+        field.set(testUser, testWishList);
+
+        Wish notTheSame = new Wish();
+        notTheSame.setId(NOTTHESAME);
+
+        testUser.removeWish(notTheSame);
+
+        assertEquals(1, testUser.getWishes().size());
+    }
+
+    @Test
+    public void testRemoveNonExistingNotification() throws Exception {
+        List<Notification> testNotifications = new ArrayList<>();
+        Notification testNotification = new Notification();
+        testNotification.setId(testString);
+        testNotifications.add(testNotification);
+        Field field = testUser.getClass().getDeclaredField("notifications");
+        field.setAccessible(true);
+        field.set(testUser, testNotifications);
+
+        Notification notTheSame = new Notification();
+        notTheSame.setId(NOTTHESAME);
+
+        testUser.removeNotification(notTheSame);
+
+        assertEquals(1, testUser.getNotifications().size());
     }
 }

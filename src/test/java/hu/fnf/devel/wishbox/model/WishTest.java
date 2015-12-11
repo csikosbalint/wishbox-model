@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class WishTest {
+    public static final String NOTTHESAME = "notthesame";
     private Wish testWish;
     private String testString;
 
@@ -119,6 +120,24 @@ public class WishTest {
     }
 
     @Test
+    public void testRemoveNonExistingEvent() throws Exception {
+        List<Event> testEvents = new ArrayList<>();
+        Event testEvent = new Event();
+        testEvent.setId(testString);
+        testEvents.add(testEvent);
+        Field field = testWish.getClass().getDeclaredField("events");
+        field.setAccessible(true);
+        field.set(testWish, testEvents);
+
+        Event notTheSame = new Event();
+        notTheSame.setId(NOTTHESAME);
+
+        testWish.removeEvent(notTheSame);
+
+        assertEquals(1, testWish.getEvents().size());
+    }
+
+    @Test
     public void testRemoveNotification() throws Exception {
         List<Notification> testNotifications = new ArrayList<>();
         Notification testNotification = new Notification();
@@ -148,4 +167,23 @@ public class WishTest {
         assertNotNull(anotherWish.getEvents());
         assertNotNull(anotherWish.getNotifications());
     }
+
+    @Test
+    public void testRemoveNonExistingNotification() throws Exception {
+        List<Notification> testNotifications = new ArrayList<>();
+        Notification testNotification = new Notification();
+        testNotification.setId(testString);
+        testNotifications.add(testNotification);
+        Field field = testWish.getClass().getDeclaredField("notifications");
+        field.setAccessible(true);
+        field.set(testWish, testNotifications);
+
+        Notification notTheSame = new Notification();
+        notTheSame.setId(NOTTHESAME);
+
+        testWish.removeNotification(notTheSame);
+
+        assertEquals(1, testWish.getNotifications().size());
+    }
+
 }
