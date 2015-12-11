@@ -35,6 +35,15 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports
+        </sonar.dynamicAnalysis>  <!-- Ensure you run mvn install before sonar:sonar -->
+        <sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
+        <sonar.surefire.reportsPath>/target/surefire-reports</sonar.surefire.reportsPath>
+        <sonar.jacoco.reportPath>target/jacoco.exec
+        </sonar.jacoco.reportPath>    <!-- This is the default, put here to be explicit -->
+        <sonar.jacoco.itReportPath>target/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <argLine>-Xmx128m</argLine>
     </properties>
 
     <dependencies>
@@ -49,4 +58,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <runOrder>random</runOrder>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

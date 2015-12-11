@@ -46,7 +46,7 @@ public class NotificationTest {
     @Test
     public void testGetPriority() throws Exception {
         Notification testNotification = new Notification();
-        Enums.Priority testPriority = Enums.Priority.danger;
+        Enums.Priority testPriority = Enums.Priority.DANGER;
 
         Field field = testNotification.getClass().getDeclaredField("priority");
         field.setAccessible(true);
@@ -58,7 +58,7 @@ public class NotificationTest {
     @Test
     public void testSetPriority() throws Exception {
         Notification testNotification = new Notification();
-        Enums.Priority testPriority = Enums.Priority.danger;
+        Enums.Priority testPriority = Enums.Priority.DANGER;
 
         testNotification.setPriority(testPriority);
         assertEquals(testPriority, testNotification.getPriority());

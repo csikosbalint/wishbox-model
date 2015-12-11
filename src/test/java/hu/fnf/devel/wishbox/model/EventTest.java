@@ -69,7 +69,7 @@ public class EventTest {
     @Test
     public void testGetPriority() throws Exception {
         Field field = testEvent.getClass().getDeclaredField("priority");
-        Enums.Priority testPriority = Enums.Priority.danger;
+        Enums.Priority testPriority = Enums.Priority.DANGER;
 
         field.setAccessible(true);
         field.set(testEvent, testPriority);
@@ -79,7 +79,7 @@ public class EventTest {
 
     @Test
     public void testSetPriority() throws Exception {
-        Enums.Priority testPriority = Enums.Priority.danger;
+        Enums.Priority testPriority = Enums.Priority.DANGER;
         testEvent.setPriority(testPriority);
         assertEquals(testPriority, testEvent.getPriority());
     }
