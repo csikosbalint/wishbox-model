@@ -1,6 +1,5 @@
 package hu.fnf.devel.wishbox.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,12 +17,6 @@ public class EventTest {
         testEvent = new Event();
         testString = "cica";
     }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
     @Test
     public void testGetTime() throws Exception {
         Field field = testEvent.getClass().getDeclaredField("time");

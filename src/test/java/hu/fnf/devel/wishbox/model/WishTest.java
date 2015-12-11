@@ -1,6 +1,5 @@
 package hu.fnf.devel.wishbox.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,11 +19,6 @@ public class WishTest {
     public void setUp() throws Exception {
         testString = "cica";
         testWish = new Wish();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test
@@ -105,6 +99,7 @@ public class WishTest {
 
         testWish.addKeyword(testString);
 
+        //noinspection unchecked
         assertEquals(1, ((List<String>) field.get(testWish)).size());
     }
 

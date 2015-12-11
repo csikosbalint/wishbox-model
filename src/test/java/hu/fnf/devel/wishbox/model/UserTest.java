@@ -1,6 +1,5 @@
 package hu.fnf.devel.wishbox.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,11 +17,6 @@ public class UserTest {
     public void setUp() throws Exception {
         testString = "cica";
         testUser = new User(null, null, null);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test

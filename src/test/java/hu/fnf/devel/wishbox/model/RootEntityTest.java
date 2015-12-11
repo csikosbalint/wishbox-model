@@ -1,6 +1,5 @@
 package hu.fnf.devel.wishbox.model;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,11 +15,6 @@ public class RootEntityTest {
     public void setUp() throws Exception {
         testRootEntity = new RootEntity();
         testString = "cica";
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test
