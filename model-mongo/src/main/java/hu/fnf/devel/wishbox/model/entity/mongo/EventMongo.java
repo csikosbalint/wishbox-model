@@ -37,38 +37,47 @@ public class EventMongo extends EntityMongo implements Event {
         this.time = new Date();
     }
 
+    @Override
     public Date getTime() {
         return time;
     }
 
+    @Override
     public String getText() {
         return text;
     }
 
+    @Override
     public void setText(String text) {
         this.text = text;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @Override
     public Enums.Priority getPriority() {
         return priority;
     }
 
+    @Override
     public void setPriority(Enums.Priority priority) {
         this.priority = priority;
     }
 
+    @Override
     public String getIcon() {
         return icon;
     }
 
+    @Override
     public void setIcon(String icon) {
         this.icon = icon;
     }
