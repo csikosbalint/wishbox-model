@@ -14,8 +14,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@SuppressWarnings("unchecked")
 public class WishMongoTest {
-    public static final String NOTTHESAME = "notthesame";
+    private static final String NOTTHESAME = "notthesame";
     private Wish testWish;
     private String testString;
 
