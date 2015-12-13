@@ -35,6 +35,7 @@
     <modules>
         <module>model-api</module>
         <module>model-mongo</module>
+        <module>module-tests</module>
     </modules>
 
     <dependencies>
