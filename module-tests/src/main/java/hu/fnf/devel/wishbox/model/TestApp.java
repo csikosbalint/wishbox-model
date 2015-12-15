@@ -1,4 +1,4 @@
-package hu.fnf.devel.wishbox.model.test;
+package hu.fnf.devel.wishbox.model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(
         {
                 "hu.fnf.devel.wishbox.model.repository.mongo",
-                "hu.fnf.devel.wishbox.model.entity.mongo",
                 "hu.fnf.devel.wishbox.model.test"
         }
 )

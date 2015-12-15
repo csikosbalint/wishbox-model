@@ -31,6 +31,14 @@
             <artifactId>jbehave-gherkin</artifactId>
             <version>4.0.4</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
