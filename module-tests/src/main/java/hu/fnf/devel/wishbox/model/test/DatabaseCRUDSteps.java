@@ -51,7 +51,7 @@ public class DatabaseCRUDSteps {
 //
 //        MongoClient mongo = new MongoClient("localhost", port);
 //
-        applicationContext = SpringApplication.run(ModelApplication.class);
+        applicationContext = SpringApplication.run(ModelApplication.class, "server.port=8081");
 //        System.out.println("a");
     }
 
