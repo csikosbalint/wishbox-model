@@ -78,7 +78,7 @@ public class DatabaseCRUDSteps {
             case "GET": {
                 RestTemplate restTemplate = new RestTemplate();
 
-                ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("http://localhost:8080/" + path, Object[].class);
+                ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("http://localhost:8081/" + path, Object[].class);
                 Object[] objs = responseEntity.getBody();
                 MediaType contentType = responseEntity.getHeaders().getContentType();
                 HttpStatus statusCode = responseEntity.getStatusCode();
@@ -88,7 +88,7 @@ public class DatabaseCRUDSteps {
             }
             case "POST": {
                 org.apache.http.client.HttpClient httpClient = HttpClientBuilder.create().build();
-                HttpPost httpPost = new HttpPost("http://localhost:8080/" + path);
+                HttpPost httpPost = new HttpPost("http://localhost:8081/" + path);
                 StringEntity entity = new StringEntity(payload);
                 httpPost.setEntity(entity);
 
