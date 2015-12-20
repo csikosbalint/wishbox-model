@@ -9,12 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <packaging>jar</packaging>
+
     <artifactId>model-tests</artifactId>
+
+    <properties>
+        <embeddables>**/*ModuleRunner.java</embeddables>
+        <ignore.failure.in.stories>true</ignore.failure.in.stories>
+        <threads>2</threads>
+        <story.timeout.in.secs>400</story.timeout.in.secs>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
             <groupId>hu.fnf.devel.wishbox</groupId>
@@ -34,11 +43,79 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>jbehave-junit-runner</artifactId>
+            <version>1.1.2</version>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>hu.fnf.devel.wishbox.model.TestApp</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-view-resources</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>unpack-view-resources</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>embeddable-stories</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>${embeddables}</include>
+                            </includes>
+                            <excludes/>
+                            <batch>false</batch>
+                            <threads>${threads}</threads>
+                            <storyTimeoutInSecs>${story.timeout.in.secs}</storyTimeoutInSecs>
+                            <generateViewAfterStories>true</generateViewAfterStories>
+                            <ignoreFailureInStories>${ignore.failure.in.stories}</ignoreFailureInStories>
+                            <ignoreFailureInView>true</ignoreFailureInView>
+                        </configuration>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <build>
+                <plugins></plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

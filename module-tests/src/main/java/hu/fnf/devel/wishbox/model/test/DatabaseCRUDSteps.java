@@ -1,6 +1,5 @@
 package hu.fnf.devel.wishbox.model.test;
 
-import hu.fnf.devel.wishbox.model.TestApp;
 import hu.fnf.devel.wishbox.model.entity.Notification;
 import hu.fnf.devel.wishbox.model.entity.Wish;
 import hu.fnf.devel.wishbox.model.entity.mongo.WishMongo;
@@ -17,18 +16,28 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Given a started REST Service with the library and a mondogdb uploaded with test data
- * When a REST <action> with <path> with <payload> is initiated
- * Then a <response> is received
- */
-
-public class ModelMongoSteps {
+public class DatabaseCRUDSteps {
     private Object o;
 
+    @AfterStory
+    public void after() {
+        System.out.println("AFTER STORY");
+    }
+
     @BeforeStory
-    public void start() {
-        TestApp.main(new String[]{});
+    public void before() throws IOException {
+        System.out.println("BEFORE STORY");
+        // http://stackoverflow.com/questions/6437226/embedded-mongodb-when-running-integration-tests
+    }
+
+    @AfterStories
+    public void afters() {
+        System.out.println("AFTER STORIES");
+    }
+
+    @BeforeStories
+    public void befores() {
+        System.out.println("BEFORE STORIES");
     }
 
     @Given("a started REST Service with the library and a mondogdb uploaded with test data")

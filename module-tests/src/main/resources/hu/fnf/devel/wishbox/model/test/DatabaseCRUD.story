@@ -5,7 +5,7 @@ Feature: Model mongodb implementation library
     When a REST <action> with <path> with <payload> is initiated
     Then a <response> is received
     Examples:
-      | action | path              | payload                                | response           |
+      | action | path            | payload                                | response           |
       | GET    | /wish           |                                        | List<Wish>         |
       | GET    | /notification   |                                        | List<Notification> |
       | POST   | /wish/1         | {label:"",events:[], notifications:[]} |                    |

@@ -1,4 +1,4 @@
-package hu.fnf.devel.wishbox.model;
+package hu.fnf.devel.wishbox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +11,11 @@ import org.springframework.context.annotation.ComponentScan;
                 "hu.fnf.devel.wishbox.model.test"
         }
 )
-public class TestApp {
+public class ModelApplication {
     public static final String ROOT = "/";
 
     public static void main(String[] args) {
-        SpringApplication.run(TestApp.class, args);
+        SpringApplication.run(ModelApplication.class, args);
     }
+
 }
