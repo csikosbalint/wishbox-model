@@ -5,9 +5,8 @@ spring:
       port:     27017
       database: test
 server:
-  port:         8081
+  port:         8080
 ---
-
 spring:
   profiles:     production
 server:

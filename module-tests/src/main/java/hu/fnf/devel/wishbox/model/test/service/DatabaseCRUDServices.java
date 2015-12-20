@@ -1,6 +1,6 @@
-package hu.fnf.devel.wishbox.model;
+package hu.fnf.devel.wishbox.model.test.service;
 
-import hu.fnf.devel.wishbox.ModelApplication;
+import hu.fnf.devel.wishbox.model.ModelApplication;
 import hu.fnf.devel.wishbox.model.entity.mongo.NotificationMongo;
 import hu.fnf.devel.wishbox.model.entity.mongo.WishMongo;
 import hu.fnf.devel.wishbox.model.repository.mongo.NotificationMongoRepository;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(ModelApplication.ROOT)
-public class TestServices {
+public class DatabaseCRUDServices {
     @Autowired
     private WishMongoRepository wishMongoRepository;
     @Autowired

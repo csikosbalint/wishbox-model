@@ -22,8 +22,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>hu.fnf.devel.wishbox</groupId>
@@ -54,30 +60,25 @@
             <artifactId>jbehave-junit-runner</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>1.50.1</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>hu.fnf.devel.wishbox.model.TestApp</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jbehave</groupId>
                 <artifactId>jbehave-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                        <version>1.7.13</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>unpack-view-resources</id>
@@ -94,12 +95,12 @@
                                 <include>${embeddables}</include>
                             </includes>
                             <excludes/>
-                            <batch>false</batch>
-                            <threads>${threads}</threads>
+                            <!--<batch>false</batch>-->
+                            <!--<threads>${threads}</threads>-->
                             <storyTimeoutInSecs>${story.timeout.in.secs}</storyTimeoutInSecs>
-                            <generateViewAfterStories>true</generateViewAfterStories>
-                            <ignoreFailureInStories>${ignore.failure.in.stories}</ignoreFailureInStories>
-                            <ignoreFailureInView>true</ignoreFailureInView>
+                            <!--<generateViewAfterStories>true</generateViewAfterStories>-->
+                            <!--<ignoreFailureInStories>${ignore.failure.in.stories}</ignoreFailureInStories>-->
+                            <!--<ignoreFailureInView>true</ignoreFailureInView>-->
                         </configuration>
                         <goals>
                             <goal>run-stories-as-embeddables</goal>
@@ -109,13 +110,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>test</id>
-            <build>
-                <plugins></plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>

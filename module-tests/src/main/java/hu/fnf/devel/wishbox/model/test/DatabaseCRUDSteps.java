@@ -1,38 +1,65 @@
 package hu.fnf.devel.wishbox.model.test;
 
-import hu.fnf.devel.wishbox.model.entity.Notification;
-import hu.fnf.devel.wishbox.model.entity.Wish;
-import hu.fnf.devel.wishbox.model.entity.mongo.WishMongo;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import hu.fnf.devel.wishbox.model.ModelApplication;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.jbehave.core.annotations.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DatabaseCRUDSteps {
+
     private Object o;
+    private MongodExecutable mongodExecutable;
+    private ConfigurableApplicationContext applicationContext;
+    private HttpResponse httpResponse;
 
     @AfterStory
     public void after() {
         System.out.println("AFTER STORY");
+        SpringApplication.exit(applicationContext);
     }
 
     @BeforeStory
     public void before() throws IOException {
         System.out.println("BEFORE STORY");
         // http://stackoverflow.com/questions/6437226/embedded-mongodb-when-running-integration-tests
+//        MongodStarter starter = MongodStarter.getDefaultInstance();
+//
+//        int port = 27017;
+//        IMongodConfig mongodConfig = new MongodConfigBuilder()
+//                .version(Version.Main.PRODUCTION)
+//                .net(new Net(port, Network.localhostIsIPv6()))
+//                .build();
+//
+//        mongodExecutable = null;
+//        mongodExecutable = starter.prepare(mongodConfig);
+//        MongodProcess mongod = mongodExecutable.start();
+//
+//        MongoClient mongo = new MongoClient("localhost", port);
+//
+        applicationContext = SpringApplication.run(ModelApplication.class);
+//        System.out.println("a");
     }
 
     @AfterStories
     public void afters() {
         System.out.println("AFTER STORIES");
+//        SpringApplication.exit(applicationContext);
+//        mongodExecutable.stop();
     }
 
     @BeforeStories
@@ -51,7 +78,7 @@ public class DatabaseCRUDSteps {
             case "GET": {
                 RestTemplate restTemplate = new RestTemplate();
 
-                ResponseEntity<WishMongo[]> responseEntity = restTemplate.getForEntity("http://localhost:8080/" + path, WishMongo[].class);
+                ResponseEntity<Object[]> responseEntity = restTemplate.getForEntity("http://localhost:8080/" + path, Object[].class);
                 Object[] objs = responseEntity.getBody();
                 MediaType contentType = responseEntity.getHeaders().getContentType();
                 HttpStatus statusCode = responseEntity.getStatusCode();
@@ -65,7 +92,7 @@ public class DatabaseCRUDSteps {
                 StringEntity entity = new StringEntity(payload);
                 httpPost.setEntity(entity);
 
-                httpClient.execute(httpPost);
+                httpResponse = httpClient.execute(httpPost);
             }
 
         }
@@ -76,12 +103,15 @@ public class DatabaseCRUDSteps {
     public void thenResponse(@Named("response") String response) {
         switch (response) {
             case "List<Wish>": {
-                assertTrue(o instanceof Wish);
+                assertTrue(((Map<String, String>) o).get("label").equals("a"));
                 break;
             }
             case "List<Notification>": {
-                assertTrue(o instanceof Notification);
+                assertTrue(((Map<String, String>) o).get("text").equals("b"));
                 break;
+            }
+            default: {
+                assertEquals(204, httpResponse.getStatusLine().getStatusCode());
             }
         }
     }

@@ -6,7 +6,7 @@ Feature: Model mongodb implementation library
     Then a <response> is received
     Examples:
       | action | path            | payload                                | response           |
-      | GET    | /wish           |                                        | List<Wish>         |
-      | GET    | /notification   |                                        | List<Notification> |
-      | POST   | /wish/1         | {label:"",events:[], notifications:[]} |                    |
-      | POST   | /notification/1 | {}                                     |                    |
+      | GET    | /wish         | ""      | List<Wish>         |
+      | GET    | /notification | ""      | List<Notification> |
+#      | POST   | /wish/1         | {label:"e",events:[], notifications:[]} | ""                 |
+#      | POST   | /notification/1 | {}                                     | ""                 |
