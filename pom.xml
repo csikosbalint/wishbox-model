@@ -26,7 +26,7 @@
     <artifactId>model</artifactId>
     <groupId>hu.fnf.devel.wishbox</groupId>
     <version>1.0.0</version>
-    <packing>pom</packing>
+    <packaging>pom</packaging>
 
     <modules>
         <module>model-api</module>
