@@ -51,7 +51,7 @@ public class DatabaseCRUDSteps {
 //
 //        MongoClient mongo = new MongoClient("localhost", port);
 //
-        applicationContext = SpringApplication.run(ModelApplication.class, "server.port=8081");
+        applicationContext = SpringApplication.run(ModelApplication.class);
 //        System.out.println("a");
     }
 
@@ -99,6 +99,7 @@ public class DatabaseCRUDSteps {
 
     }
 
+    @SuppressWarnings("unchecked")
     @Then("a <response> is received")
     public void thenResponse(@Named("response") String response) {
         switch (response) {

@@ -14,19 +14,20 @@ import org.junit.runner.RunWith;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
+import java.net.URLClassLoader;
+import java.util.Collections;
 import java.util.List;
 
 @RunWith(JUnitReportingRunner.class)
 public class DatabaseCRUDModuleRunner extends JUnitStories {
 
     public DatabaseCRUDModuleRunner() {
-        JUnitReportingRunner.recommandedControls(configuredEmbedder());
+        JUnitReportingRunner.recommendedControls(configuredEmbedder());
     }
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("modules/DatabaseCRUD.story");
+        return Collections.singletonList("modules/DatabaseCRUD.story");
     }
 
     @Override
@@ -48,6 +49,14 @@ public class DatabaseCRUDModuleRunner extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+
+        URL[] urls = ((URLClassLoader) cl).getURLs();
+
+        for (URL url : urls) {
+            System.out.println(url.getFile());
+        }
+
         return new InstanceStepsFactory(configuration(), new DatabaseCRUDSteps());
     }
 
