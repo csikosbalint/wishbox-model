@@ -22,27 +22,26 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-
-    <parent>
-        <groupId>hu.fnf.devel.wishbox</groupId>
-        <artifactId>wishbox</artifactId>
-        <version>1.1-SNAPSHOT</version>
-    </parent>
-
+    
     <artifactId>model</artifactId>
+    <groupId>hu.fnf.devel.wishbox</groupId>
+    <version>1.0.0</version>
+    <packing>pom</packing>
 
     <modules>
         <module>model-api</module>
         <module>model-mongodb</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
+    
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+    
 </project>
