@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>model-mongodb</artifactId>
-    <version>1.0.201512280836.RC.RC.RC.RC</version>
+    <version>1.0.201512280857.RC.RC.RC.RC.RC</version>
 
     <dependencies>
         <dependency>

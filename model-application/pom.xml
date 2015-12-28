@@ -5,12 +5,12 @@
     <parent>
         <artifactId>model</artifactId>
         <groupId>hu.fnf.devel.wishbox</groupId>
-        <version>1.1.201512280836.RC.RC.RC.RC</version>
+        <version>1.1.201512280857.RC.RC.RC.RC.RC</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>model-application</artifactId>
-    <version>1.1.201512280836.RC.RC.RC.RC</version>
+    <version>1.1.201512280857.RC.RC.RC.RC.RC</version>
 
 
     <dependencies>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>hu.fnf.devel.wishbox</groupId>
             <artifactId>model-mongodb</artifactId>
-            <version>1.0.201512280836.RC.RC.RC.RC</version>
+            <version>1.0.201512280857.RC.RC.RC.RC.RC</version>
         </dependency>
     </dependencies>
 
