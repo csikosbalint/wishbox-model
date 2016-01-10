@@ -1,7 +1,6 @@
 package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Enums;
-import hu.fnf.devel.wishbox.model.entity.Event;
+import hu.fnf.devel.wishbox.model.entity.Priority;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,14 +10,13 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
 public class EventMongoTest {
-    Event testEvent;
+    EventMongo testEvent;
     String testString;
 
     @Before
     public void setUp() throws Exception {
         testEvent = new EventMongo();
         testString = "cica";
-        Enums enums = new Enums(); // Test for empty constructor
     }
     @Test
     public void testGetTime() throws Exception {
@@ -65,7 +63,7 @@ public class EventMongoTest {
     @Test
     public void testGetPriority() throws Exception {
         Field field = testEvent.getClass().getDeclaredField("priority");
-        Enums.Priority testPriority = Enums.Priority.DANGER;
+        Priority testPriority = Priority.DANGER;
 
         field.setAccessible(true);
         field.set(testEvent, testPriority);
@@ -75,7 +73,7 @@ public class EventMongoTest {
 
     @Test
     public void testSetPriority() throws Exception {
-        Enums.Priority testPriority = Enums.Priority.DANGER;
+        Priority testPriority = Priority.DANGER;
         testEvent.setPriority(testPriority);
         assertEquals(testPriority, testEvent.getPriority());
     }

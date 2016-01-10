@@ -1,30 +1,31 @@
-package hu.fnf.devel.wishbox.model.entity.mongo;
+
+package hu.fnf.devel.wishbox.model.entity;
 
 import hu.fnf.devel.wishbox.model.entity.api.INotification;
 import hu.fnf.devel.wishbox.model.entity.api.IUser;
 import hu.fnf.devel.wishbox.model.entity.api.IWish;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "users")
-public class UserMongo extends EntityMongo implements IUser {
-
+public class User implements IUser {
+    private String id;
     private String firstName;
     private String lastName;
-    @DBRef
     private List<IWish> wishes;
-    @DBRef
     private List<INotification> notifications;
 
-    public UserMongo(String id, String firstName, String lastName) {
-        super.setId(id);
+    public User(String id, String firstName, String lastName) {
+        this.id = id;
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.notifications = new ArrayList<>();
         this.wishes = new ArrayList<>();
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 
     @Override

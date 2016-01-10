@@ -19,10 +19,10 @@
 
 package hu.fnf.devel.wishbox.model.repository.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.mongo.EventMongo;
+import hu.fnf.devel.wishbox.model.entity.Event;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EventMongoRepository extends MongoRepository<EventMongo, String> {
+public interface EventMongoRepository extends MongoRepository<Event, String> {
 }

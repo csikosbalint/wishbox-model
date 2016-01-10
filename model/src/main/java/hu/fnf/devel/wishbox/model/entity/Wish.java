@@ -1,44 +1,36 @@
-package hu.fnf.devel.wishbox.model.entity.mongo;
+
+package hu.fnf.devel.wishbox.model.entity;
 
 import hu.fnf.devel.wishbox.model.entity.api.IEvent;
 import hu.fnf.devel.wishbox.model.entity.api.INotification;
 import hu.fnf.devel.wishbox.model.entity.api.IWish;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "wishes")
-public class WishMongo extends EntityMongo implements IWish {
+public class Wish implements IWish {
+    private String id;
     private String label;
     private List<String> keywords;
     private Date time;
-    @DBRef
     private List<IEvent> events;
-    @DBRef
     private List<INotification> notifications;
 
-    public WishMongo() {
+    public Wish() {
         this.time = new Date();
         this.events = new ArrayList<>();
         this.notifications = new ArrayList<>();
         this.keywords = new ArrayList<>();
     }
 
-    public WishMongo(IWish w) {
+    public Wish(IWish w) {
         this.label = w.getLabel();
         this.time = new Date();
         this.events = new ArrayList<>(w.getEvents());
         this.notifications = new ArrayList<>(w.getNotifications());
         this.keywords = new ArrayList<>();
         this.keywords.add(w.getLabel());
-    }
-
-    @Override
-    public String getId() {
-        return id;
     }
 
     @Override
@@ -101,4 +93,8 @@ public class WishMongo extends EntityMongo implements IWish {
         }
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
 }

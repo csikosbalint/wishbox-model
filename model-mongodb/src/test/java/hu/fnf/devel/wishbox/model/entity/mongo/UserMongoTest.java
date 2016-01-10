@@ -1,8 +1,7 @@
 package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Notification;
-import hu.fnf.devel.wishbox.model.entity.User;
-import hu.fnf.devel.wishbox.model.entity.Wish;
+import hu.fnf.devel.wishbox.model.entity.api.INotification;
+import hu.fnf.devel.wishbox.model.entity.api.IWish;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,12 +13,11 @@ import static org.junit.Assert.assertEquals;
 
 public class UserMongoTest {
     public static final String NOTTHESAME = "notthesame";
-    private User testUser;
-    private String testString;
+    private static final String testString = "cica";
+    private UserMongo testUser;
 
     @Before
     public void setUp() throws Exception {
-        testString = "cica";
         testUser = new UserMongo(null, null, null);
     }
 
@@ -55,7 +53,7 @@ public class UserMongoTest {
 
     @Test
     public void testGetWishes() throws Exception {
-        List<Wish> testWishList = new ArrayList<>();
+        List<WishMongo> testWishList = new ArrayList<>();
         Field field = testUser.getClass().getDeclaredField("wishes");
         field.setAccessible(true);
         field.set(testUser, testWishList);
@@ -65,7 +63,7 @@ public class UserMongoTest {
 
     @Test
     public void testGetNotifications() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
         Field field = testUser.getClass().getDeclaredField("notifications");
         field.setAccessible(true);
         field.set(testUser, testNotifications);
@@ -75,7 +73,7 @@ public class UserMongoTest {
 
     @Test
     public void testAddNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
         Field field = testUser.getClass().getDeclaredField("notifications");
         field.setAccessible(true);
         field.set(testUser, testNotifications);
@@ -87,7 +85,7 @@ public class UserMongoTest {
 
     @Test
     public void testAddWish() throws Exception {
-        List<Wish> testWishList = new ArrayList<>();
+        List<WishMongo> testWishList = new ArrayList<>();
         Field field = testUser.getClass().getDeclaredField("wishes");
         field.setAccessible(true);
         field.set(testUser, testWishList);
@@ -99,8 +97,8 @@ public class UserMongoTest {
 
     @Test
     public void testRemoveWish() throws Exception {
-        List<Wish> testWishList = new ArrayList<>();
-        Wish testWish = new WishMongo();
+        List<WishMongo> testWishList = new ArrayList<>();
+        WishMongo testWish = new WishMongo();
         Field field = testWish.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(testWish, testString);
@@ -117,8 +115,8 @@ public class UserMongoTest {
 
     @Test
     public void testRemoveNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
-        Notification testNotification = new NotificationMongo();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
+        NotificationMongo testNotification = new NotificationMongo();
         Field field = testNotification.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(testNotification, testString);
@@ -135,8 +133,8 @@ public class UserMongoTest {
 
     @Test
     public void testRemoveNonExistingWish() throws Exception {
-        List<Wish> testWishList = new ArrayList<>();
-        Wish testWish = new WishMongo();
+        List<IWish> testWishList = new ArrayList<>();
+        WishMongo testWish = new WishMongo();
         Field field = testWish.getClass().getSuperclass().getDeclaredField("id");
 
         field.setAccessible(true);
@@ -148,7 +146,7 @@ public class UserMongoTest {
         field.setAccessible(true);
         field.set(testUser, testWishList);
 
-        Wish notTheSame = new WishMongo();
+        WishMongo notTheSame = new WishMongo();
         field = notTheSame.getClass().getSuperclass().getDeclaredField("id");
 
         field.setAccessible(true);
@@ -161,8 +159,8 @@ public class UserMongoTest {
 
     @Test
     public void testRemoveNonExistingNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
-        Notification testNotification = new NotificationMongo();
+        List<INotification> testNotifications = new ArrayList<>();
+        NotificationMongo testNotification = new NotificationMongo();
         Field field = testNotification.getClass().getSuperclass().getDeclaredField("id");
 
         field.setAccessible(true);
@@ -174,7 +172,7 @@ public class UserMongoTest {
         field.setAccessible(true);
         field.set(testUser, testNotifications);
 
-        Notification notTheSame = new NotificationMongo();
+        NotificationMongo notTheSame = new NotificationMongo();
         field = notTheSame.getClass().getSuperclass().getDeclaredField("id");
 
         field.setAccessible(true);

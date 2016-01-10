@@ -1,18 +1,17 @@
-package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Priority;
+package hu.fnf.devel.wishbox.model.entity;
+
 import hu.fnf.devel.wishbox.model.entity.api.INotification;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "notifications")
-public class NotificationMongo extends EntityMongo implements INotification {
+public class Notification implements INotification {
+    private String id;
     private Date time;
     private String text;
     private Priority priority;
 
-    public NotificationMongo() {
+    public Notification() {
         this.time = new Date();
     }
 
@@ -39,5 +38,10 @@ public class NotificationMongo extends EntityMongo implements INotification {
     @Override
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

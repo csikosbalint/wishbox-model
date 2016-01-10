@@ -1,20 +1,19 @@
-package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Priority;
+package hu.fnf.devel.wishbox.model.entity;
+
 import hu.fnf.devel.wishbox.model.entity.api.IEvent;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "events")
-public class EventMongo extends EntityMongo implements IEvent {
+public class Event implements IEvent {
+    private String id;
     private Date time;
     private String text;
     private String title;
     private Priority priority;
     private String icon;
 
-    public EventMongo() {
+    public Event() {
         this.time = new Date();
     }
 
@@ -61,5 +60,10 @@ public class EventMongo extends EntityMongo implements IEvent {
     @Override
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

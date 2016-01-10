@@ -1,7 +1,6 @@
 package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Enums;
-import hu.fnf.devel.wishbox.model.entity.Notification;
+import hu.fnf.devel.wishbox.model.entity.Priority;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
@@ -14,7 +13,7 @@ public class NotificationMongoTest {
 
     @Test
     public void testGetTime() throws Exception {
-        Notification testNotification = new NotificationMongo();
+        NotificationMongo testNotification = new NotificationMongo();
 
         Date localTime = new Date();
 
@@ -27,7 +26,7 @@ public class NotificationMongoTest {
 
     @Test
     public void testGetText() throws Exception {
-        Notification testNotification = new NotificationMongo();
+        NotificationMongo testNotification = new NotificationMongo();
 
         Field field = testNotification.getClass().getDeclaredField("text");
         field.setAccessible(true);
@@ -38,7 +37,7 @@ public class NotificationMongoTest {
 
     @Test
     public void testSetText() throws Exception {
-        Notification testNotification = new NotificationMongo();
+        NotificationMongo testNotification = new NotificationMongo();
 
         testNotification.setText(testString);
 
@@ -47,8 +46,8 @@ public class NotificationMongoTest {
 
     @Test
     public void testGetPriority() throws Exception {
-        Notification testNotification = new NotificationMongo();
-        Enums.Priority testPriority = Enums.Priority.DANGER;
+        NotificationMongo testNotification = new NotificationMongo();
+        Priority testPriority = Priority.DANGER;
 
         Field field = testNotification.getClass().getDeclaredField("priority");
         field.setAccessible(true);
@@ -59,8 +58,8 @@ public class NotificationMongoTest {
 
     @Test
     public void testSetPriority() throws Exception {
-        Notification testNotification = new NotificationMongo();
-        Enums.Priority testPriority = Enums.Priority.DANGER;
+        NotificationMongo testNotification = new NotificationMongo();
+        Priority testPriority = Priority.DANGER;
 
         testNotification.setPriority(testPriority);
         assertEquals(testPriority, testNotification.getPriority());

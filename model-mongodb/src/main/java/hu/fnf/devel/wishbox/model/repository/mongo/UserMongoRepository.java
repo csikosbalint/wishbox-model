@@ -19,10 +19,10 @@
 
 package hu.fnf.devel.wishbox.model.repository.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.mongo.UserMongo;
+import hu.fnf.devel.wishbox.model.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserMongoRepository extends MongoRepository<UserMongo, String> {
+public interface UserMongoRepository extends MongoRepository<User, String> {
 }

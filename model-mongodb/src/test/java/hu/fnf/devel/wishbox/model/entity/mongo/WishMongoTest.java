@@ -1,8 +1,5 @@
 package hu.fnf.devel.wishbox.model.entity.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.Event;
-import hu.fnf.devel.wishbox.model.entity.Notification;
-import hu.fnf.devel.wishbox.model.entity.Wish;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 @SuppressWarnings("unchecked")
 public class WishMongoTest {
     private static final String NOTTHESAME = "notthesame";
-    private Wish testWish;
+    private WishMongo testWish;
     private String testString;
 
     @Before
@@ -53,7 +50,7 @@ public class WishMongoTest {
 
     @Test
     public void testGetEvents() throws Exception {
-        List<Event> testEvents = new ArrayList<>();
+        List<EventMongo> testEvents = new ArrayList<>();
         Field field = testWish.getClass().getDeclaredField("events");
         field.setAccessible(true);
         field.set(testWish, testEvents);
@@ -63,7 +60,7 @@ public class WishMongoTest {
 
     @Test
     public void testGetNotifications() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
         Field field = testWish.getClass().getDeclaredField("notifications");
         field.setAccessible(true);
         field.set(testWish, testNotifications);
@@ -73,7 +70,7 @@ public class WishMongoTest {
 
     @Test
     public void testAddNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
         Field field = testWish.getClass().getDeclaredField("notifications");
         field.setAccessible(true);
         field.set(testWish, testNotifications);
@@ -85,7 +82,7 @@ public class WishMongoTest {
 
     @Test
     public void testAddEvent() throws Exception {
-        List<Event> testEvents = new ArrayList<>();
+        List<EventMongo> testEvents = new ArrayList<>();
         Field field = testWish.getClass().getDeclaredField("events");
         field.setAccessible(true);
         field.set(testWish, testEvents);
@@ -110,8 +107,8 @@ public class WishMongoTest {
 
     @Test
     public void testRemoveEvent() throws Exception {
-        List<Event> testEvents = new ArrayList<>();
-        Event testEvent = new EventMongo();
+        List<EventMongo> testEvents = new ArrayList<>();
+        EventMongo testEvent = new EventMongo();
         Field field = testEvent.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(testEvent, testString);
@@ -128,8 +125,8 @@ public class WishMongoTest {
 
     @Test
     public void testRemoveNonExistingEvent() throws Exception {
-        List<Event> testEvents = new ArrayList<>();
-        Event testEvent = new EventMongo();
+        List<EventMongo> testEvents = new ArrayList<>();
+        EventMongo testEvent = new EventMongo();
         Field field = testEvent.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(testEvent, testString);
@@ -139,7 +136,7 @@ public class WishMongoTest {
         field.setAccessible(true);
         field.set(testWish, testEvents);
 
-        Event notTheSame = new EventMongo();
+        EventMongo notTheSame = new EventMongo();
         field = notTheSame.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(notTheSame, NOTTHESAME);
@@ -151,8 +148,8 @@ public class WishMongoTest {
 
     @Test
     public void testRemoveNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
-        Notification testNotification = new NotificationMongo();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
+        NotificationMongo testNotification = new NotificationMongo();
         Field field = testNotification.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(testNotification, testString);
@@ -169,13 +166,13 @@ public class WishMongoTest {
 
     @Test
     public void testWish() {
-        Wish testWish = new WishMongo();
+        WishMongo testWish = new WishMongo();
         testWish.setLabel(testString);
         testWish.addEvent(new EventMongo());
         testWish.addKeyword(testString);
         testWish.addNotification(new NotificationMongo());
 
-        Wish anotherWish = new WishMongo(testWish);
+        WishMongo anotherWish = new WishMongo(testWish);
 
         assertNotNull(anotherWish.getLabel());
         assertNotNull(anotherWish.getTime());
@@ -185,8 +182,8 @@ public class WishMongoTest {
 
     @Test
     public void testRemoveNonExistingNotification() throws Exception {
-        List<Notification> testNotifications = new ArrayList<>();
-        Notification testNotification = new NotificationMongo();
+        List<NotificationMongo> testNotifications = new ArrayList<>();
+        NotificationMongo testNotification = new NotificationMongo();
 
         Field field = testNotification.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
@@ -197,7 +194,7 @@ public class WishMongoTest {
         field.setAccessible(true);
         field.set(testWish, testNotifications);
 
-        Notification notTheSame = new NotificationMongo();
+        NotificationMongo notTheSame = new NotificationMongo();
         field = notTheSame.getClass().getSuperclass().getDeclaredField("id");
         field.setAccessible(true);
         field.set(notTheSame, NOTTHESAME);

@@ -19,10 +19,10 @@
 
 package hu.fnf.devel.wishbox.model.repository.mongo;
 
-import hu.fnf.devel.wishbox.model.entity.mongo.NotificationMongo;
+import hu.fnf.devel.wishbox.model.entity.Notification;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NotificationMongoRepository extends MongoRepository<NotificationMongo, String> {
+public interface NotificationMongoRepository extends MongoRepository<Notification, String> {
 }

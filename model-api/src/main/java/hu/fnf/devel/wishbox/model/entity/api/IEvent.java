@@ -1,8 +1,12 @@
-package hu.fnf.devel.wishbox.model.entity;
+package hu.fnf.devel.wishbox.model.entity.api;
+
+import hu.fnf.devel.wishbox.model.entity.Priority;
 
 import java.util.Date;
 
-public interface Event extends Entity {
+public interface IEvent {
+
+    String getId();
 
     Date getTime();
 
@@ -14,9 +18,9 @@ public interface Event extends Entity {
 
     void setTitle(String title);
 
-    Enums.Priority getPriority();
+    Priority getPriority();
 
-    void setPriority(Enums.Priority priority);
+    void setPriority(Priority priority);
 
     String getIcon();
 
